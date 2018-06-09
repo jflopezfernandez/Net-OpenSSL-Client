@@ -9,7 +9,8 @@
 #define NULLPTR NULL
 #endif
 
-#include <openssl/a
+#include <openssl/bio.h>
+#include <openssl/ssl.h>
 
 //#include <openssl/bio.h>
 //#include <openssl/evp.h>
@@ -36,6 +37,7 @@ BIO* spc_connect_ssl(char *host, int port, spc_x509store_t *spc_store, SSL_CTX *
     BIO *connection = NULLPTR;
     int our_ctx = 0;
 
+    // TODO: Fix reference error for 'CRYPTO_add'
     if (*ctx) {
         CRYPTO_add(&((*ctx)->references), 1, CRYPTO_LOCK_SSL_CTX);
     }
